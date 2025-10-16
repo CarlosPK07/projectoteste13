@@ -5,11 +5,11 @@
     </head>
     <body class="min-h-screen bg-white antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
         <div class="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
-            <div class="flex w-full max-w-sm flex-col gap-2">
+            <div class="flex w-full max-w-sm flex-col gap 4">
 
 
 <a href="{{ route('home') }}" class="flex flex-col items-center">
-    <span class="text-lg font-semibold text-gray-900">
+    <span class="p-2 text-2xl font-bold text-red-600 hover:text-red-700">
       REDE SOCIAL MESTRADO-UMA
     </span>
   </a>

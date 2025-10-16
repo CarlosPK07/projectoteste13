@@ -6,17 +6,17 @@ use Livewire\Volt\Volt;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Redirect;
 
-// ✅ Rota "home" necessária para evitar erro de rota indefinida
-Route::get('/home', function () {
-    return redirect()->route('dashboard');
-})->name('home');
-
-// ✅ Ao acessar a raiz do site, o utilizador será redirecionado ao login
+// ✅ Página inicial redireciona para o login
 Route::get('/', function () {
     return Redirect::route('login');
 });
 
-// ✅ Dashboard (mantido como está)
+// ✅ Rota "home" (usada por Jetstream / Fortify)
+Route::get('/home', function () {
+    return redirect()->route('dashboard');
+})->name('home');
+
+// ✅ Dashboard (mantido)
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
         )
         ->name('two-factor.show');
 
-    // ✅ Rota para listar os utilizadores (somente autenticados)
+    // ✅ Rota para listar utilizadores (somente autenticados)
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 });
 
