@@ -4,16 +4,24 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Redirect;
 
-Route::get('/', function () {
-    return view('welcome');
+// ✅ Rota "home" necessária para evitar erro de rota indefinida
+Route::get('/home', function () {
+    return redirect()->route('dashboard');
 })->name('home');
 
+// ✅ Ao acessar a raiz do site, o utilizador será redirecionado ao login
+Route::get('/', function () {
+    return Redirect::route('login');
+});
+
+// ✅ Dashboard (mantido como está)
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-// Grupo de rotas que requerem autenticação
+// ✅ Grupo de rotas que requerem autenticação
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
